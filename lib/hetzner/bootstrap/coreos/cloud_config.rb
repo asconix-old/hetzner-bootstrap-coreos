@@ -13,7 +13,7 @@ module Hetzner
         end
 
         def to_s
-          @raw_clooud_config
+          @raw_cloud_config
         end
       end
     end

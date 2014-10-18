@@ -120,6 +120,8 @@ module Hetzner
 
           remote do |ssh|
             ssh.exec! "echo \"#{cloud_config}\" > /tmp/cloud-config.yaml"
+            ssh.exec! "wget https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install -P /tmp"
+            ssh.exec! "chmod a+x /tmp/coreos-install"
             logger.info "Remote executing: #{@bootstrap_cmd}"
             output = ssh.exec!(@bootstrap_cmd)
             logger.info output
@@ -178,7 +180,8 @@ module Hetzner
 
           params = {}
           params[:hostname] = @hostname
-          params[:ip]       = @ip
+          params[:ip] = @ip
+          params[:public_keys] = @public_keys
 
           return eruby.result(params)
         end
