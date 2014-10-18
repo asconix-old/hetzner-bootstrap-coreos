@@ -144,8 +144,9 @@ module Hetzner
         end
 
         def update_local_known_hosts(options = {})
-          remote(:paranoid => true) do |ssh|
-            # dummy
+          remote do |ssh|
+            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+            `ssh-keygen -R #{@hostname}`
           end
         rescue Net::SSH::HostKeyMismatch => e
           e.remember_host!
@@ -208,7 +209,7 @@ module Hetzner
         end
 
         def remote(options = {}, &block)
-          default = { :paranoid => false, :password => @password }
+          default = { :password => @password }
           default.merge! options
           Net::SSH.start(@ip, @login, default) do |ssh|
             block.call ssh
