@@ -5,7 +5,7 @@ This gem allows you to bootstrap CoreOS on a Hetzner root server.
 [![Gem Version](https://badge.fury.io/rb/hetzner-bootstrap-coreos.png)](http://badge.fury.io/rb/hetzner-bootstrap-coreos)
 
 ## What it does:
-/3.
+
 In our case we are running a large [CoreOS](https://coreos.com) cluster and which uses bare metal servers hosted at Hetzner. This Ruby gem helps to fully automate the provisioning of CoreOS on a Hetzner root server.
 
 Warning: All existing data on the system will be lost!
