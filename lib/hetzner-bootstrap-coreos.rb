@@ -4,7 +4,7 @@ require 'logger'
 require 'hetzner-api'
 require 'hetzner/bootstrap/coreos/version'
 require 'hetzner/bootstrap/coreos/target'
-require 'hetzner/bootstrap/coreos/template'
+require 'hetzner/bootstrap/coreos/cloud_config'
 
 module Hetzner
   class Bootstrap

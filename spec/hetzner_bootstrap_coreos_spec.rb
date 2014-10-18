@@ -17,7 +17,7 @@ describe "Bootstrap" do
 
     it "should have the default cloud config file if none is specified" do
       @bootstrap.add_target proper_target
-      @bootstrap.targets.first.template.should be_instance_of Hetzner::Bootstrap::CoreOS::CloudConfig
+      @bootstrap.targets.first.cloud_config.should be_instance_of Hetzner::Bootstrap::CoreOS::CloudConfig
     end
 
     it "should raise an NoCloudConfigProvidedError when no cloud config option provided" do

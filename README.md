@@ -5,7 +5,7 @@ This gem allows you to bootstrap CoreOS on a Hetzner root server.
 [![Gem Version](https://badge.fury.io/rb/hetzner-bootstrap-coreos.png)](http://badge.fury.io/rb/hetzner-bootstrap-coreos)
 
 ## What it does:
-
+/3.
 In our case we are running a large [CoreOS](https://coreos.com) cluster and which uses bare metal servers hosted at Hetzner. This Ruby gem helps to fully automate the provisioning of CoreOS on a Hetzner root server.
 
 Warning: All existing data on the system will be lost!
@@ -18,7 +18,7 @@ First of all retrieve your API login credentials from the Hetzner admin interfac
 
 1. Enable Rescue Mode (using Hetzner's webservice)
 2. Resetting the System to boot into rescue mode (using Hetzner's webservice)
-3. Log into the rescue system, write your installimage template, execute installation
+3. Log into the rescue system, write your cloud config file and launch the installation
 4. Reboot
 5. Verify installation (very basic check but can be overwritten)
 6. Copy your local ssh public-key into root's .authorized_keys
