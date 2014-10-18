@@ -3,14 +3,14 @@ $:.push File.expand_path("../lib", __FILE__)
 require "hetzner/bootstrap/coreos/version"
 
 Gem::Specification.new do |s|
-  s.name        = "hetzner-bootstrap"
-  s.version     = Hetzner::Bootstrap::VERSION
+  s.name        = "hetzner-bootstrap-coreos"
+  s.version     = Hetzner::Bootstrap::CoreOS::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Roland Moriz"]
-  s.email       = ["roland@moriz.de"]
-  s.homepage    = "http://moriz.de/opensource/hetzner-api"
-  s.summary     = %q{Easy bootstrapping of hetzner.de rootservers using hetzner-api}
-  s.description = %q{Easy bootstrapping of hetzner.de rootservers using hetzner-api}
+  s.authors     = ["Christoph Pilka"]
+  s.email       = ["c.pilka@asconix.com"]
+  s.homepage    = "http://www.asconix.com"
+  s.summary     = %q{Bootstrapping of the root servers at Hetzner with CoreOS}
+  s.description = %q{Bootstrapping of the root servers at Hetzner with CoreOS}
 
   s.add_dependency 'hetzner-api', '>= 1.1.0'
   s.add_dependency 'net-ssh',     '>= 2.6.0'
