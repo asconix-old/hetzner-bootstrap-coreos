@@ -26,8 +26,9 @@ module Hetzner
                           reboot
                           wait_for_ssh_down
                           wait_for_ssh_up
-                          verify_installation
+                          remove_from_local_known_hosts
                           update_local_known_hosts
+                          verify_installation
                           post_install
                           post_install_remote)
         @api         = options[:api]
