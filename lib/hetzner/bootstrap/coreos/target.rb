@@ -18,6 +18,7 @@ module Hetzner
         attr_accessor :post_install
         attr_accessor :post_install_remote
         attr_accessor :public_keys
+        attr_accessor :coreos_password
         attr_accessor :bootstrap_cmd
         attr_accessor :logger
 
@@ -192,7 +193,7 @@ module Hetzner
           params[:hostname] = @hostname
           params[:ip] = @ip
           params[:public_keys] = @public_keys
-          params[:password] = @password
+          params[:coreos_password] = @coreos_password
 
           return eruby.result(params)
         end
