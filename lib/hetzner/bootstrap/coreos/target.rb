@@ -119,6 +119,8 @@ module Hetzner
         def installimage(options = {})
           cloud_config = render_cloud_config
 
+          puts cloud_config
+
           remote do |ssh|
             ssh.exec! "echo \"#{cloud_config}\" > /tmp/cloud-config.yaml"
             ssh.exec! "wget https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install -P /tmp"
