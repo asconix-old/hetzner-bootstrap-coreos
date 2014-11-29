@@ -21,6 +21,7 @@ module Hetzner
                           reset
                           wait_for_ssh_down
                           wait_for_ssh_up
+                          remove_from_local_known_hosts
                           installimage
                           reboot
                           wait_for_ssh_down
