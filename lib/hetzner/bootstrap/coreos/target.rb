@@ -18,7 +18,6 @@ module Hetzner
         attr_accessor :post_install
         attr_accessor :post_install_remote
         attr_accessor :public_keys
-        attr_accessor :coreos_password
         attr_accessor :bootstrap_cmd
         attr_accessor :logger
 
@@ -42,7 +41,7 @@ module Hetzner
 
         def enable_rescue_mode(options = {})
           result = @api.enable_rescue! @ip, @rescue_os, @rescue_os_bit
-          puts ">>> >>> >>> #{result.inspect}"
+          puts red(">>> >>> >>> #{result.inspect}")
 
           if result.success? && result['rescue']
             @password = result['rescue']['password']
@@ -181,7 +180,7 @@ module Hetzner
 
         def post_install_remote(options = {})
           return unless @post_install_remote
-          
+
           remote do |ssh|
             @post_install_remote.split("\n").each do |cmd|
               cmd.chomp!
@@ -198,7 +197,6 @@ module Hetzner
           params[:hostname] = @hostname
           params[:ip] = @ip
           params[:public_keys] = @public_keys
-          params[:coreos_password] = @coreos_password
 
           return eruby.result(params)
         end

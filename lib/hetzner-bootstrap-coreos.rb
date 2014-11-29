@@ -16,26 +16,25 @@ module Hetzner
 
       def initialize(options = {})
         @targets = []
-        # @actions = %w(
-            # enable_rescue_mode
-            # verify_installation
-        # )
         @actions = %w(
-            remove_from_local_known_hosts
             enable_rescue_mode
-            reset
-            wait_for_ssh_down
-            wait_for_ssh_up
-            update_local_known_hosts
-            installimage
-            reboot
-            wait_for_ssh_down
-            wait_for_ssh_up
-            update_local_known_hosts
-            verify_installation
-            post_install
-            post_install_remote
         )
+        # @actions = %w(
+        #     remove_from_local_known_hosts
+        #     enable_rescue_mode
+        #     reset
+        #     wait_for_ssh_down
+        #     wait_for_ssh_up
+        #     update_local_known_hosts
+        #     installimage
+        #     reboot
+        #     wait_for_ssh_down
+        #     wait_for_ssh_up
+        #     update_local_known_hosts
+        #     verify_installation
+        #     post_install
+        #     post_install_remote
+        # )
         @api = options[:api]
         @logger = options[:logger] || Logger.new(STDOUT)
       end
@@ -73,6 +72,15 @@ module Hetzner
       rescue => e
         puts "Something bad happened unexpectedly: #{e.class} => #{e.message}"
       end
+
+      # Colored Output
+      def colorize(text, color_code)
+        "\e[#{color_code}m#{text}\e[0m"
+      end
+
+      def red(text); colorize(text, 31); end
+      def green(text); colorize(text, 32); end
+      def yellow(text); colorize(text, 33); end
     end
   end
 end
