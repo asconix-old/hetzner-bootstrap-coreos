@@ -135,6 +135,10 @@ module Hetzner
           end
         end
 
+        def remove_old_ssh_keys(options = {})
+          # TODO
+        end
+
         def verify_installation(options = {})
           remote do |ssh|
             working_hostname = ssh.exec!("cat /etc/hostname")
@@ -152,7 +156,6 @@ module Hetzner
         rescue Net::SSH::HostKeyMismatch => e
           e.remember_host!
           logger.info "Remote host key added to local ~/.ssh/known_hosts file."
-          retry
         end
 
         def post_install(options = {})
