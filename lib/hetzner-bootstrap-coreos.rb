@@ -17,7 +17,8 @@ module Hetzner
       def initialize(options = {})
         @targets = []
         @actions = %w(
-          verify_installation
+            enable_rescue_mode
+            verify_installation
         )
             # remove_from_local_known_hosts
             # enable_rescue_mode
