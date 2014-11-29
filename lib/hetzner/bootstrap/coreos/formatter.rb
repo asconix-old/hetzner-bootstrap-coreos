@@ -2,20 +2,29 @@ module Hetzner
   class Bootstrap
     class CoreOS
       class Formatter
-        def colorize(text, color_code)
+        attr_accessor :color
+        attr_accessor :text
+
+        def initialize(options = {})
+          @text = options[:text]
+          @color_code = options[:color_code]
           "\e[#{color_code}m#{text}\e[0m"
         end
 
+        def colorize(text, color_code)
+          Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: color_code)
+        end
+
         def red(text)
-          colorize(text, 31)
+          Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: 31)
         end
         
         def green(text)
-          colorize(text, 32)
+          Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: 32)
         end
         
         def yellow(text)
-          colorize(text, 33)
+          Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: 33)
         end
       end
     end
