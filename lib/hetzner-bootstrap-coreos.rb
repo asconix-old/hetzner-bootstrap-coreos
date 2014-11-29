@@ -22,6 +22,7 @@ module Hetzner
                           wait_for_ssh_up
                           update_local_known_hosts
                           installimage
+                          update_local_known_hosts
                           reboot
                           wait_for_ssh_down
                           wait_for_ssh_up
