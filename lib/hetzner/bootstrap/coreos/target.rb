@@ -2,6 +2,7 @@ require 'erubis'
 require 'net/ssh'
 require 'socket'
 require 'timeout'
+require 'colorize'
 
 module Hetzner
   class Bootstrap
