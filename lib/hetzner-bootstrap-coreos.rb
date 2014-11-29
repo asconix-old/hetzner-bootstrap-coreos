@@ -70,7 +70,7 @@ module Hetzner
           target.logger.info "#{loghack}[#{action}] FINISHED in #{sprintf "%.5f",d} seconds"
         end
       rescue => e
-        puts "Something bad happened unexpectedly: #{e.class} => #{e.message}"
+        target.logger.error "Something bad happened unexpectedly: #{e.class} => #{e.message}"
       end
     end
   end
