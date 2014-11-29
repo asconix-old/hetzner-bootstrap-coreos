@@ -34,8 +34,8 @@ module Hetzner
             update_local_known_hosts
             verify_installation
             post_install
+            post_install_remote
         )
-            # post_install_remote
         @api = options[:api]
         @logger = options[:logger] || Logger.new(STDOUT)
       end

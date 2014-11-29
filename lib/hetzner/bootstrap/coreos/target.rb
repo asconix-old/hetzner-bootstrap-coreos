@@ -180,6 +180,8 @@ module Hetzner
         end
 
         def post_install_remote(options = {})
+          return unless @post_install_remote
+          
           remote do |ssh|
             @post_install_remote.split("\n").each do |cmd|
               cmd.chomp!
