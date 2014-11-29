@@ -148,12 +148,14 @@ module Hetzner
 
         def remove_from_local_known_hosts(options = {})
           `ssh-keygen -R #{@hostname}`
+          `ssh-keygen -R #{@ip}`
         end
 
         def update_local_known_hosts(options = {})
           remote do |ssh|
             puts ">>> Removing SSH key for #{@hostname} from local ~/.ssh/known_hosts file ..."
             `ssh-keygen -R #{@hostname}`
+            `ssh-keygen -R #{@ip}`
           end
         rescue Net::SSH::HostKeyMismatch => e
           e.remember_host!
