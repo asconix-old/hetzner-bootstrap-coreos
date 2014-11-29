@@ -42,12 +42,10 @@ module Hetzner
 
         def enable_rescue_mode(options = {})
           result = @api.enable_rescue! @ip, @rescue_os, @rescue_os_bit
-          puts (">>> >>> >>> #{result.inspect}").colorize(:red)
-
           if result.success? && result['rescue']
             @password = result['rescue']['password']
             reset_retries
-            logger.info "IP: #{ip} => password: #{@password}"
+            logger.info "IP: #{ip} | username: #{@login} | password: #{@password}".colorize(:magenta)
           elsif @retries > 3
             logger.error "Rescue system could not be activated"
             raise CantActivateRescueSystemError, result
