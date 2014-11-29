@@ -1,5 +1,3 @@
-puts "LOADING"
-
 module Hetzner
   class Bootstrap
     class CoreOS

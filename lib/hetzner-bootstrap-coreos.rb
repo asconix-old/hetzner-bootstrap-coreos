@@ -5,6 +5,7 @@ require 'hetzner-api'
 require 'hetzner/bootstrap/coreos/version'
 require 'hetzner/bootstrap/coreos/target'
 require 'hetzner/bootstrap/coreos/cloud_config'
+require 'hetzner/bootstrap/coreos/formatter'
 
 module Hetzner
   class Bootstrap
