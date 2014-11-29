@@ -220,6 +220,7 @@ module Hetzner
         def remote(options = {}, &block)
           default = { :password => @password }
           default.merge! options
+          puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ip: #{@ip}, login: #{@login}, default: #{default} ..."
           Net::SSH.start(@ip, @login, default) do |ssh|
             block.call ssh
           end
