@@ -231,7 +231,7 @@ module Hetzner
         end
 
         def remote_core(options = {}, &block)
-          Net::SSH.start(@ip, @login) do |ssh|
+          Net::SSH.start(@ip, ctp) do |ssh|
             block.call ssh
           end
         end
