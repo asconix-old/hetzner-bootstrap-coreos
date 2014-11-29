@@ -16,13 +16,12 @@ module Hetzner
 
       def initialize(options = {})
         @targets     = []
-        @actions     = %w(enable_rescue_mode
+        @actions     = %w(update_local_known_hosts
+                          enable_rescue_mode
                           reset
                           wait_for_ssh_down
                           wait_for_ssh_up
-                          update_local_known_hosts
                           installimage
-                          update_local_known_hosts
                           reboot
                           wait_for_ssh_down
                           wait_for_ssh_up

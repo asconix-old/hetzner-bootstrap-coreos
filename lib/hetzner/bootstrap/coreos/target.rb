@@ -137,10 +137,6 @@ module Hetzner
           end
         end
 
-        def remove_old_ssh_keys(options = {})
-          # TODO
-        end
-
         def verify_installation(options = {})
           remote do |ssh|
             working_hostname = ssh.exec!("cat /etc/hostname")
@@ -152,7 +148,7 @@ module Hetzner
 
         def update_local_known_hosts(options = {})
           remote do |ssh|
-            puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+            puts ">>> Removing SSH key for #{@hostname} from local ~/.ssh/known_hosts file ..."
             `ssh-keygen -R #{@hostname}`
           end
         rescue Net::SSH::HostKeyMismatch => e
