@@ -15,23 +15,25 @@ module Hetzner
       attr_accessor :logger
 
       def initialize(options = {})
-        @targets     = []
-        @actions     = %w(remove_from_local_known_hosts
-                          enable_rescue_mode
-                          reset
-                          wait_for_ssh_down
-                          wait_for_ssh_up
-                          update_local_known_hosts
-                          installimage
-                          reboot
-                          wait_for_ssh_down
-                          wait_for_ssh_up
-                          update_local_known_hosts
-                          verify_installation
-                          post_install
-                          post_install_remote)
-        @api         = options[:api]
-        @logger      = options[:logger] || Logger.new(STDOUT)
+        @targets = []
+        @actions = %w(
+            # remove_from_local_known_hosts
+            # enable_rescue_mode
+            # reset
+            # wait_for_ssh_down
+            # wait_for_ssh_up
+            # update_local_known_hosts
+            # installimage
+            # reboot
+            # wait_for_ssh_down
+            # wait_for_ssh_up
+            # update_local_known_hosts
+            verify_installation
+            # post_install
+            # post_install_remote
+        )
+        @api = options[:api]
+        @logger = options[:logger] || Logger.new(STDOUT)
       end
 
       def add_target(param)
