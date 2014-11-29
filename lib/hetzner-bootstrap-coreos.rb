@@ -26,7 +26,6 @@ module Hetzner
                           reboot
                           wait_for_ssh_down
                           wait_for_ssh_up
-                          remove_from_local_known_hosts
                           update_local_known_hosts
                           verify_installation
                           post_install
