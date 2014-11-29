@@ -6,9 +6,17 @@ module Hetzner
           "\e[#{color_code}m#{text}\e[0m"
         end
 
-        def red(text); colorize(text, 31); end
-        def green(text); colorize(text, 32); end
-        def yellow(text); colorize(text, 33); end
+        def red(text)
+          colorize(text, 31)
+        end
+        
+        def green(text)
+          colorize(text, 32)
+        end
+        
+        def yellow(text)
+          colorize(text, 33)
+        end
       end
     end
   end
