@@ -47,12 +47,12 @@ module Hetzner
             reset_retries
             logger.info "IP: #{ip} | username: #{@login} | password: #{@password}".colorize(:magenta)
           elsif @retries > 3
-            logger.error "Rescue system could not be activated"
+            logger.error "Rescue system could not be activated".colorize(:red)
             raise CantActivateRescueSystemError, result
           else
             @retries += 1
 
-            logger.warn "Problem while trying to activate rescue system (retries: #{@retries})"
+            logger.warn "Problem while trying to activate rescue system (retries: #{@retries})".colorize(:yellow)
             @api.disable_rescue! @ip
 
             rolling_sleep
@@ -66,11 +66,11 @@ module Hetzner
           if result.success?
             reset_retries
           elsif @retries > 3
-            logger.error "Resetting through web service failed."
+            logger.error "Resetting through web service failed.".colorize(:red)
             raise CantResetSystemError, result
           else
             @retries += 1
-            logger.warn "Problem while trying to reset/reboot system (retries: #{@retries})"
+            logger.warn "Problem while trying to reset/reboot system (retries: #{@retries})".colorize(:yellow)
             rolling_sleep
             reset options
           end
@@ -88,21 +88,21 @@ module Hetzner
             sleep 2
             Timeout::timeout(4) do
               if port_open? @ip, 22
-                logger.debug "SSH UP"
+                logger.debug "SSH UP".colorize(:magenta)
               else
                 raise Errno::ECONNREFUSED
               end
             end
           end
         rescue Timeout::Error, Errno::ECONNREFUSED
-          logger.debug "SSH down"
+          logger.debug "SSH down".colorize(:magenta)
         end
 
         def wait_for_ssh_up(options = {})
           loop do
             Timeout::timeout(4) do
               if port_open? @ip, 22
-                logger.debug "SSH up"
+                logger.debug "SSH up".colorize(:magenta)
                 return true
               else
                 raise Errno::ECONNREFUSED
@@ -110,7 +110,7 @@ module Hetzner
             end
           end
         rescue Errno::ECONNREFUSED, Timeout::Error
-          logger.debug "SSH down"
+          logger.debug "SSH down".colorize(:magenta)
           sleep 2
           retry
         end
@@ -124,26 +124,28 @@ module Hetzner
             ssh.exec! "echo \"#{cloud_config}\" > /tmp/cloud-config.yaml"
             ssh.exec! "wget https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install -P /tmp"
             ssh.exec! "chmod a+x /tmp/coreos-install"
-            logger.info "Remote executing: #{@bootstrap_cmd}"
+            logger.info "Remote executing: #{@bootstrap_cmd}".colorize(:magenta)
             output = ssh.exec!(@bootstrap_cmd)
             logger.info output
           end
         end
 
         def reboot(options = {})
+          logger.info "Rebooting ...".colorize(:magenta)
           remote do |ssh|
             ssh.exec!("reboot")
           end
         end
 
         def verify_installation(options = {})
-          @login = 'ctp'
+          logger.info "Verifying the installation ...".colorize(:magenta)
+          @login = 'core'
           remote(password: nil) do |ssh|
             working_hostname = ssh.exec!("cat /etc/hostname")
-            unless @hostname == working_hostname.chomp
-              raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
+            if @hostname == working_hostname.chomp
+              logger.info "The installation has been successful".colorize(:green)
             else
-              puts "ALL IS FINE ... #{working_hostname.chomp}"
+              raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
             end
           end
         end
@@ -155,20 +157,20 @@ module Hetzner
 
         def update_local_known_hosts(options = {})
           remote do |ssh|
-            puts ">>> Removing SSH key for #{@hostname} from local ~/.ssh/known_hosts file ..."
+            logger.info "Removing SSH keys for #{@hostname} from local ~/.ssh/known_hosts file ...".colorize(:magenta)
             `ssh-keygen -R #{@hostname}`
             `ssh-keygen -R #{@ip}`
           end
         rescue Net::SSH::HostKeyMismatch => e
           e.remember_host!
-          logger.info "Remote host key added to local ~/.ssh/known_hosts file."
+          logger.info "Remote host key has been added to local ~/.ssh/known_hosts file.".colorize(:green)
         end
 
         def post_install(options = {})
           return unless @post_install
 
           post_install = render_post_install
-          logger.info "Executing post_install:\n #{post_install}"
+          logger.info "Executing post_install:\n #{post_install}".colorize(:magenta)
 
           output = local do
             `#{post_install}`
@@ -183,7 +185,7 @@ module Hetzner
           remote do |ssh|
             @post_install_remote.split("\n").each do |cmd|
               cmd.chomp!
-              logger.info "executing #{cmd}"
+              logger.info "executing #{cmd}".colorize(:magenta)
               ssh.exec!(cmd)
             end
           end
