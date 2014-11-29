@@ -41,7 +41,7 @@ module Hetzner
 
         def enable_rescue_mode(options = {})
           result = @api.enable_rescue! @ip, @rescue_os, @rescue_os_bit
-          puts red(">>> >>> >>> #{result.inspect}")
+          puts Hetzner::Bootstrap::CoreOS::red(">>> >>> >>> #{result.inspect}")
 
           if result.success? && result['rescue']
             @password = result['rescue']['password']
