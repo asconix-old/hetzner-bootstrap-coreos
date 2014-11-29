@@ -139,7 +139,7 @@ module Hetzner
         end
 
         def verify_installation(options = {})
-          remote do |ssh|
+          remote(login: "ctp") do |ssh|
             working_hostname = ssh.exec!("cat /etc/hostname")
             unless @hostname == working_hostname.chomp
               raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
