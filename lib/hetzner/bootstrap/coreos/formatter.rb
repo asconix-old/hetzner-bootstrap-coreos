@@ -2,7 +2,7 @@ module Hetzner
   class Bootstrap
     class CoreOS
       class Formatter
-        attr_accessor :color
+        attr_accessor :color_code
         attr_accessor :text
 
         def initialize(options = {})
