@@ -17,6 +17,8 @@ module Hetzner
       def initialize(options = {})
         @targets = []
         @actions = %w(
+          verify_installation
+        )
             # remove_from_local_known_hosts
             # enable_rescue_mode
             # reset
@@ -28,10 +30,10 @@ module Hetzner
             # wait_for_ssh_down
             # wait_for_ssh_up
             # update_local_known_hosts
-            verify_installation
+            # verify_installation
             # post_install
             # post_install_remote
-        )
+        # )
         @api = options[:api]
         @logger = options[:logger] || Logger.new(STDOUT)
       end
