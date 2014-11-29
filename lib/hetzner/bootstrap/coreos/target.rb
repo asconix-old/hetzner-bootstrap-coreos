@@ -192,6 +192,7 @@ module Hetzner
           params[:hostname] = @hostname
           params[:ip] = @ip
           params[:public_keys] = @public_keys
+          params[:password] = @password
 
           return eruby.result(params)
         end
