@@ -144,7 +144,7 @@ module Hetzner
             unless @hostname == working_hostname.chomp
               raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
             else
-              puts "ALL IS FINE ..."
+              puts "ALL IS FINE ... #{working_hostname.chomp}"
             end
           end
         end
