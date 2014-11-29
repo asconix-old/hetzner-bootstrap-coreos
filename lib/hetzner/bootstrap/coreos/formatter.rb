@@ -15,7 +15,7 @@ module Hetzner
           Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: color_code)
         end
 
-        def red(text)
+        def self.red(text)
           Hetzner::Bootstrap::CoreOS::Formatter.new(text: text, color_code: 31)
         end
         
