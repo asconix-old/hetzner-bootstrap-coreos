@@ -152,6 +152,7 @@ module Hetzner
         rescue Net::SSH::HostKeyMismatch => e
           e.remember_host!
           logger.info "Remote host key added to local ~/.ssh/known_hosts file."
+          retry
         end
 
         def post_install(options = {})

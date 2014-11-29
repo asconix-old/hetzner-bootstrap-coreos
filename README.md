@@ -1,6 +1,6 @@
 # hetzner-bootstrap-coreos
 
-This gem allows you to bootstrap CoreOS on a Hetzner root server.
+This gem allows to bootstrap CoreOS on a Hetzner root server.
 
 [![Gem Version](https://badge.fury.io/rb/hetzner-bootstrap-coreos.png)](http://badge.fury.io/rb/hetzner-bootstrap-coreos)
 
@@ -22,14 +22,14 @@ First of all retrieve your API login credentials from the Hetzner admin interfac
 4. Reboot
 5. Verify installation (very basic check but can be overwritten)
 6. Copy your local ssh public-key into root's .authorized_keys
-7. Adds the generated server key into your .know_hosts file
-8. Execute post_install hooks (optional)
+7. Adds the generated server key into your `$HOME/.ssh/known_hosts` file
+8. Execute `post_install` hooks (optional)
 
 ## Example:
 
-**see example.rb file for usage!**
+See `example.rb` file for usage.
 
-Warning: All existing data on the system will be lost!
+Warning: All existing data on the target system will be lost!
 
 ```ruby
 
@@ -90,4 +90,4 @@ This Ruby gem is inspired by the [hetzner-bootstrap](https://github.com/rmoriz/h
 Copyright
 ---------
 
-Copyright © 2014 Christoph Pilka ([Asconix Systems AS](https://www.asconix.com)
+Copyright © 2014 Christoph Pilka ([Asconix Systems AS](https://www.asconix.com))
