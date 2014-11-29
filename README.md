@@ -45,7 +45,7 @@ bs = Hetzner::Bootstrap::CoreOS.new(
   :api => Hetzner::API.new(ENV['ROBOT_USER'], ENV['ROBOT_PASSWORD'])
 )
 
-# Main configuration (cloud-config) 
+# Main configuration (cloud-config)
 cloud_config = <<EOT
 hostname: <%= hostname %>
 ssh_authorized_keys:
@@ -61,7 +61,7 @@ EOT
 bs << { :ip => "1.2.3.4",
   :cloud_config => cloud_config,
   :hostname => 'artemis.massive-insights.com',
-    :public_keys => "~/.ssh/id_dsa.pub",
+    :public_keys => "~/.ssh/id_rsa.pub",
     :post_install => post_install
 }
 
@@ -85,7 +85,7 @@ Warnings:
 
 ## Thank you greeting
 
-This Ruby gem is inspired by the [hetzner-bootstrap](https://github.com/rmoriz/hetzner-bootstrap) gem and requires the underlying wrapper for the Hetzner server management API [hetzner-api](https://github.com/rmoriz/hetzner-api). Thus I want to thank [Roland Moriz](https://roland.io/developer) a lot for his great work! 
+This Ruby gem is inspired by the [hetzner-bootstrap](https://github.com/rmoriz/hetzner-bootstrap) gem and requires the underlying wrapper for the Hetzner server management API [hetzner-api](https://github.com/rmoriz/hetzner-api). Thus I want to thank [Roland Moriz](https://roland.io/developer) a lot for his great work!
 
 Copyright
 ---------
