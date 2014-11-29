@@ -139,11 +139,12 @@ module Hetzner
         end
 
         def verify_installation(options = {})
-          @login = 'ctp'
-          remote do |ssh|
+          remote_core do |ssh|
             working_hostname = ssh.exec!("cat /etc/hostname")
             unless @hostname == working_hostname.chomp
               raise InstallationError, "Hostnames do not match: assumed #{@hostname} but received #{working_hostname}"
+            else
+              puts "ALL IS FINE ..."
             end
           end
         end
@@ -225,6 +226,12 @@ module Hetzner
           default.merge! options
           puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> ip: #{@ip}, login: #{@login}, default: #{default} ..."
           Net::SSH.start(@ip, @login, default) do |ssh|
+            block.call ssh
+          end
+        end
+
+        def remote_core(options = {}, &block)
+          Net::SSH.start(@ip, @login) do |ssh|
             block.call ssh
           end
         end
