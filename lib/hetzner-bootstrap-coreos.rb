@@ -16,7 +16,7 @@ module Hetzner
 
       def initialize(options = {})
         @targets     = []
-        @actions     = %w(update_local_known_hosts
+        @actions     = %w(remove_from_local_known_hosts
                           enable_rescue_mode
                           reset
                           wait_for_ssh_down

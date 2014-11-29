@@ -146,6 +146,10 @@ module Hetzner
           end
         end
 
+        def remove_from_local_known_hosts(options = {})
+          `ssh-keygen -R #{@hostname}`
+        end
+
         def update_local_known_hosts(options = {})
           remote do |ssh|
             puts ">>> Removing SSH key for #{@hostname} from local ~/.ssh/known_hosts file ..."
