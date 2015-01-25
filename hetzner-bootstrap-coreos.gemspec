@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'hetzner-api', '>= 1.1.0'
   s.add_dependency 'net-ssh',     '>= 2.6.0'
-  s.add_dependency 'net-sftp',    '>= 2.6.0'
+  s.add_dependency 'net-sftp',    '>= 2.1.0'
   s.add_dependency 'erubis',      '>= 2.7.0'
   s.add_dependency 'colorize',    '~> 0.7.3'
 
