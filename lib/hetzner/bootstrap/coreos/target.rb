@@ -119,7 +119,15 @@ module Hetzner
           cloud_config = render_cloud_config
 
           remote do |ssh|
-            ssh.exec! "echo \"#{cloud_config}\" > /tmp/cloud-config.yaml"
+            ssh.open_channel do |channel|
+              channel.exec("cat > /tmp/cloud-config.yaml") do |ch, success|
+                channel.on_data do |ch,data|
+                  res << data
+                end
+                channel.send_data(cloud_config)
+                channel.eof!
+              end
+            end
             ssh.exec! "wget https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install -P /tmp"
             ssh.exec! "chmod a+x /tmp/coreos-install"
             logger.info "Remote executing: #{@bootstrap_cmd}".colorize(:magenta)
