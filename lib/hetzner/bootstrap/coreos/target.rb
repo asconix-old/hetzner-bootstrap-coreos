@@ -27,7 +27,7 @@ module Hetzner
           @rescue_os     = 'linux'
           @rescue_os_bit = '64'
           @retries       = 0
-          @bootstrap_cmd = 'export TERM=xterm; /tmp/coreos-install -d /dev/sda -C stable -c /tmp/cloud-config.yaml'
+          @bootstrap_cmd = 'export TERM=xterm; apt-get intall -yqq gawk; /tmp/coreos-install -d /dev/sda -C stable -c /tmp/cloud-config.yaml'
           @login         = 'root'
 
           if cc = options.delete(:cloud_config)
