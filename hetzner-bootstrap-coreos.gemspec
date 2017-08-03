@@ -9,14 +9,14 @@ Gem::Specification.new do |s|
   s.authors     = ["Christoph Pilka"]
   s.email       = ["c.pilka@asconix.com"]
   s.homepage    = "http://www.asconix.com"
-  s.summary     = %q{Bootstrapping of the root servers at Hetzner with CoreOS}
-  s.description = %q{Bootstrapping of the root servers at Hetzner with CoreOS}
+  s.summary     = %q{Bootstrapping of Hetzner root servers with CoreOS}
+  s.description = %q{Bootstrapping of Hetzner root servers with CoreOS}
 
-  s.add_dependency 'hetzner-api', '>= 1.1.0'
-  s.add_dependency 'net-ssh',     '>= 2.6.0'
-  s.add_dependency 'net-sftp',    '>= 2.1.0'
+  s.add_dependency 'hetzner-api', '~> 1.2.0'
+  s.add_dependency 'net-ssh',     '~> 4.1'
+  s.add_dependency 'net-sftp',    '~> 2.1.2'
   s.add_dependency 'erubis',      '>= 2.7.0'
-  s.add_dependency 'colorize',    '~> 0.7.3'
+  s.add_dependency 'colorize',    '~> 0.8.1'
 
   s.add_development_dependency "rspec",   ">= 2.13.0"
   s.add_development_dependency "rake"
