@@ -22,6 +22,7 @@ module Hetzner
         attr_accessor :public_keys
         attr_accessor :bootstrap_cmd
         attr_accessor :logger
+        attr_accessor :wipe_devices
 
         def initialize(options = {})
           @rescue_os     = 'linux'
@@ -114,6 +115,15 @@ module Hetzner
           logger.debug "SSH down".colorize(:magenta)
           sleep 2
           retry
+        end
+
+        def wipedisks(options = {})
+          if @wipe_devices
+            remote do |ssh|
+              logger.info "Remote executing: wipefs --all #{@wipe_devices}".colorize(:magenta)
+              ssh.exec! "wipefs --all " + @wipe_devices
+            end
+          end
         end
 
         def installimage(options = {})
