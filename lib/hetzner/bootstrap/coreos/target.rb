@@ -125,6 +125,7 @@ module Hetzner
             end
             ssh.exec! "wget https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install -P /tmp"
             ssh.exec! "chmod a+x /tmp/coreos-install"
+            ssh.exec! "apt-get install -yqq gawk"
             logger.info "Remote executing: #{@bootstrap_cmd}".colorize(:magenta)
             output = ssh.exec!(@bootstrap_cmd)
             logger.info output
